@@ -2,7 +2,7 @@ package ru.netology
 
 object WallService {
 	private var posts = emptyArray<Post>()
-	private var nextId: Long = 0
+	private var nextId: Long
 
 	fun add(post: Post): Post {
 		posts += if (posts.isEmpty()) {
