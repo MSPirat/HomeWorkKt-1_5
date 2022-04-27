@@ -12,9 +12,9 @@ data class Post(
 	val replyOwnerId: Long,
 	val replyPostId: Long,
 	val friendsOnly: Boolean,
-	val comments: Objects,
+	val comments: Any,
 	val likes: Int, //= 0,
-	val reposts: Objects,
-	val views: Objects,
+	val reposts: Any,
+	val views: Any,
 	val isFavorite: Boolean,
 )
