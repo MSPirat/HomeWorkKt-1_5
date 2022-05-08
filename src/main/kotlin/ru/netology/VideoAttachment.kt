@@ -1,6 +1,6 @@
 package ru.netology
 
-open class VideoAttachment(
+data class VideoAttachment(
 	val id: Long,
 	val ownerId: Long,
 	val artist: String,
@@ -8,5 +8,10 @@ open class VideoAttachment(
 	val description: String,
 	val firstFrameUrl: String,
 	val dateAdd: Int,
+	override val type: String = "video",
+	val video: Video = Video(),
 
-	) : Attachment("Video")
+	) : Attachment(type)
+
+class Video {
+}

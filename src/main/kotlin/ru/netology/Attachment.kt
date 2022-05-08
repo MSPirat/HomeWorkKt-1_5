@@ -1,3 +1,5 @@
 package ru.netology
 
-abstract class Attachment(val type: String)
+abstract class Attachment(open val type: String)
+
+

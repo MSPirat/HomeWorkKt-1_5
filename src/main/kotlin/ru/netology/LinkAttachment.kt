@@ -1,8 +1,13 @@
 package ru.netology
 
-open class LinkAttachment(
+data class LinkAttachment(
 	val url: String,
 	val title: String,
 	val description: String,
+	override val type: String = "link",
+	val link: Link = Link(),
 
-	) : Attachment("Link")
+	) : Attachment(type)
+
+class Link {
+}
