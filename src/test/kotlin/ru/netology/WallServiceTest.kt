@@ -1,8 +1,9 @@
 package ru.netology
 
 import org.junit.Test
-import org.junit.Before
+
 import org.junit.Assert.*
+import org.junit.Before
 
 class WallServiceTest {
 
@@ -15,10 +16,10 @@ class WallServiceTest {
 	fun add() {
 		// arrange
 		val serviceTest = WallService
-		serviceTest.add(Post(1, 2, 3, "author", 4, "text",
+		serviceTest.add(Post(0, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
 			"views", true))
-		val updateTest = Post(1, 2, 3, "author", 4, "text",
+		val updateTest = Post(0, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
 			"views", true)
 
@@ -26,23 +27,23 @@ class WallServiceTest {
 		val result = WallService.add(post = updateTest)
 
 		//assert
-		assertEquals(7, result.postId)
+		assertEquals(1, result.postId)
 	}
 
 	@Test
 	fun updateTrue() {
 		val serviceTest = WallService
+		serviceTest.add(Post(0, 2, 3, "author", 4,
+			"text", 5, 6, true, "comments", 7,
+			"reposts", "views", true))
 		serviceTest.add(Post(1, 2, 3, "author", 4,
 			"text", 5, 6, true, "comments", 7,
 			"reposts", "views", true))
 		serviceTest.add(Post(2, 2, 3, "author", 4,
 			"text", 5, 6, true, "comments", 7,
 			"reposts", "views", true))
-		serviceTest.add(Post(3, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
 
-		val updateTest = Post(5, 2, 3, "author", 4, "text",
+		val updateTest = Post(2, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
 			"views", true)
 
@@ -54,13 +55,13 @@ class WallServiceTest {
 	@Test
 	fun updateFalse() {
 		val serviceTest = WallService
+		serviceTest.add(Post(0, 2, 3, "author", 4,
+			"text", 5, 6, true, "comments", 7,
+			"reposts", "views", true))
 		serviceTest.add(Post(1, 2, 3, "author", 4,
 			"text", 5, 6, true, "comments", 7,
 			"reposts", "views", true))
 		serviceTest.add(Post(2, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
-		serviceTest.add(Post(3, 2, 3, "author", 4,
 			"text", 5, 6, true, "comments", 7,
 			"reposts", "views", true))
 
@@ -73,7 +74,24 @@ class WallServiceTest {
 		assertFalse(result)
 	}
 
-	@Test
-	fun likeById() {
-	}
+    /*
+    @Test
+    fun updateExisting() {
+        // создаём целевой сервис
+        val service = WallService()
+        // заполняем несколькими постами
+        service.add(Post(/* заполняете поля */))
+        service.add(Post(/* заполняете поля */))
+        service.add(Post(/* заполняете поля */))
+        // создаём информацию об обновлении
+        val update = Post(/* заполняете поля */)
+
+        // выполняем целевое действие
+        val result = service.update(update)
+
+        // проверяем результат (используйте assertTrue или assertFalse)
+        assertTrue(result)
+    }
+
+     */
 }
