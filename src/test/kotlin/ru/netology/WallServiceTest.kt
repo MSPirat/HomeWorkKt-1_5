@@ -1,7 +1,6 @@
 package ru.netology
 
 import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
 
@@ -16,12 +15,18 @@ class WallServiceTest {
 	fun add() {
 		// arrange
 		val serviceTest = WallService
-		serviceTest.add(Post(0, 2, 3, "author", 4, "text",
+		serviceTest.add(
+			Post(
+				0, 2, 3, "author", 4, "text",
+				5, 6, true, "comments", 7, "reposts",
+				"views", true
+			)
+		)
+		val updateTest = Post(
+			0, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
-			"views", true))
-		val updateTest = Post(0, 2, 3, "author", 4, "text",
-			5, 6, true, "comments", 7, "reposts",
-			"views", true)
+			"views", true
+		)
 
 		//act
 		val result = WallService.add(post = updateTest)
@@ -33,19 +38,33 @@ class WallServiceTest {
 	@Test
 	fun updateTrue() {
 		val serviceTest = WallService
-		serviceTest.add(Post(0, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
-		serviceTest.add(Post(1, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
-		serviceTest.add(Post(2, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
+		serviceTest.add(
+			Post(
+				0, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
+		serviceTest.add(
+			Post(
+				1, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
+		serviceTest.add(
+			Post(
+				2, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
 
-		val updateTest = Post(2, 2, 3, "author", 4, "text",
+		val updateTest = Post(
+			2, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
-			"views", true)
+			"views", true
+		)
 
 		val result = serviceTest.update(updateTest)
 
@@ -55,43 +74,66 @@ class WallServiceTest {
 	@Test
 	fun updateFalse() {
 		val serviceTest = WallService
-		serviceTest.add(Post(0, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
-		serviceTest.add(Post(1, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
-		serviceTest.add(Post(2, 2, 3, "author", 4,
-			"text", 5, 6, true, "comments", 7,
-			"reposts", "views", true))
+		serviceTest.add(
+			Post(
+				0, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
+		serviceTest.add(
+			Post(
+				1, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
+		serviceTest.add(
+			Post(
+				2, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
 
-		val updateTest = Post(10, 2, 3, "author", 4, "text",
+		val updateTest = Post(
+			10, 2, 3, "author", 4, "text",
 			5, 6, true, "comments", 7, "reposts",
-			"views", true)
+			"views", true
+		)
 
 		val result = serviceTest.update(updateTest)
 
 		assertFalse(result)
 	}
 
-    /*
-    @Test
-    fun updateExisting() {
-        // создаём целевой сервис
-        val service = WallService()
-        // заполняем несколькими постами
-        service.add(Post(/* заполняете поля */))
-        service.add(Post(/* заполняете поля */))
-        service.add(Post(/* заполняете поля */))
-        // создаём информацию об обновлении
-        val update = Post(/* заполняете поля */)
+	@Test
+	fun createComment() {
+		WallService.add(
+			Post(
+				0, 2, 3, "author", 4,
+				"text", 5, 6, true, "comments", 7,
+				"reposts", "views", true
+			)
+		)
 
-        // выполняем целевое действие
-        val result = service.update(update)
+		val commentTest = Comment(
+			1, 0, "author", 2, "text",
+			3, 4, true
+		)
 
-        // проверяем результат (используйте assertTrue или assertFalse)
-        assertTrue(result)
-    }
+		WallService.createComment(
+			comment = commentTest
+		)
+	}
 
-     */
+	@Test(expected = PostNotFoundException::class)
+	fun shouldThrow() {
+		WallService.createComment(
+			comment = Comment(
+				1, 10, "author", 2, "text",
+				3, 4, true
+			)
+		)
+	}
 }
