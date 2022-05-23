@@ -132,8 +132,10 @@ class WallServiceTest {
 			3, 4, true
 		)
 
-		WallService.createComment(
+		val result = WallService.createComment(
 			comment = commentTest
 		)
+
+		assertNotNull(result)
 	}
 }
