@@ -13,5 +13,4 @@ data class VideoAttachment(
 
 	) : Attachment(type)
 
-class Video {
-}
+class Video

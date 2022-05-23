@@ -12,5 +12,4 @@ data class AudioAttachment(
 
 	) : Attachment(type)
 
-class Audio {
-}
+class Audio

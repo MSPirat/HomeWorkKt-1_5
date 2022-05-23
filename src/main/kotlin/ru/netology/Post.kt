@@ -5,7 +5,7 @@ data class Post(
 	val ownerId: Long,
 	val authorId: Long,
 	val authorName: String,
-	val dateTime: Long,    //https://i-leon.ru/tools/time
+	val date: Int,    //https://i-leon.ru/tools/time
 	val text: String,
 	val replyOwnerId: Long,
 	val replyPostId: Long,

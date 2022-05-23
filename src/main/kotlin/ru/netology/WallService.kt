@@ -1,8 +1,9 @@
 package ru.netology
 
 object WallService {
-    var posts = emptyArray<Post>()
-    var postsClear = emptyArray<Post>()
+    private var posts = emptyArray<Post>()
+    private var postsClear = emptyArray<Post>()
+    private var comments = emptyArray<Comment>()
     private var nextId: Long = 0
 
     fun clear() {
@@ -26,11 +27,25 @@ object WallService {
     fun update(post: Post): Boolean {
         for ((postId, newPost) in posts.withIndex()) {
             if (newPost.postId == post.postId) {
-                posts[postId] = newPost.copy(ownerId = post.ownerId, dateTime = post.dateTime)
+                posts[postId] = newPost.copy(ownerId = post.ownerId, date = post.date)
                 return true
             }
         }
         return false
+    }
+
+    fun createComment(comment: Comment) {
+        var addComment = false
+
+        for (newPost in posts) {
+            if (newPost.postId == comment.postId) {
+                comments += comment
+                addComment = true
+            }
+        }
+        if (!addComment) {
+            throw PostNotFoundException("Post not found")
+        }
     }
 
     fun likeById(id: Long) {

@@ -9,5 +9,4 @@ data class LinkAttachment(
 
 	) : Attachment(type)
 
-class Link {
-}
+class Link

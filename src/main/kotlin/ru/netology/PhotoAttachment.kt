@@ -12,5 +12,4 @@ data class PhotoAttachment(
 
 	) : Attachment(type)
 
-class Photo {
-}
+class Photo

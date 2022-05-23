@@ -12,5 +12,4 @@ data class DocumentAttachment(
 
 	) : Attachment(type)
 
-class Document {
-}
+class Document
